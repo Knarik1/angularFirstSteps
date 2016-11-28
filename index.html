@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJs first steps</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"></script>
+    <script src="js/invoice1.js"></script>
+</head>
+<body>
+
+<div  ng-app="invoice1" ng-controller="InvoiceController as invoice">
+    <h3>Invoice</h3>
+    <div>
+        <label for="">Quantity:</label>
+        <input type="number" min="0"  ng-model="invoice.qty">
+    </div>
+    <div>
+        <label for="">Costs:</label>
+        <input type="number" min="0" ng-model="invoice.cost">
+        <select name="" id="" ng-model="invoice.inCurr">
+            <option ng-repeat="curr in invoice.currencies">{{ curr }}</option>
+        </select>
+    </div>
+    <h4>Total:</h4>
+    <span ng-repeat="c in invoice.currencies">
+        {{ invoice.total(c) | currency:c }}
+    </span></br>
+    <button ng-click="invoice.pay()">Pay</button>
+</div>
+
+</body>
+</html>
